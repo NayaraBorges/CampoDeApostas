@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Jogo</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="./TemplateGlobal.xhtml">
+            <ui:define name="content">
+                <h3>Cadastro de grupos</h3><p/>
+                <h:panelGrid columns="2">
+
+                    <h:outputText value="Descrição"/>  
+                    <p:inputText id="txtDescricao" value="#{grupo.descricao}" />
+                    <p:commandButton id="salvar" value="Salvar" onclick="msgSalvar.show();" />
+                    <p:commandButton id="cancelar" value="Cancelar" oncomplete="msgSalvar.hide()" />
+                </h:panelGrid>
+
+                <p:confirmDialog id="dlgSalvar" message="Confirma gravação dos dados?"
+                                 header="Confirmar" severity="alert" widgetVar="msgSalvar">
+                    <p:commandButton id="confirma" value="Sim" oncomplete="msgSalvar.hide()"
+                                     action="#{grupo.salvar()}"/>
+                    <p:commandButton id="cancela" value="Não" oncomplete="msgSalvar.hide()"
+                                     onclick="msgSalvar.hide();"/>
+
+                </p:confirmDialog>
+
+            
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

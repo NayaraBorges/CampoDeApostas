@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <h:form>
+            <h1>Jogo</h1>
+            <p:menubar>  
+                <p:submenu label="Gerenciar" icon="ui-icon-document">  
+                    <p:submenu label="Jogador" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarJogador.xhtml" />  
+                        <p:menuitem value="Listar" url="listarJogador.xhtml" />  
+                    </p:submenu>  
+                    <p:submenu label="Jogo" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarJogo.xhtml" />
+                        <p:menuitem value="Listar" url="listarJogo.xhtml" />  
+                    </p:submenu> 
+                    <p:submenu label="Seleção" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarSelecao.xhtml" /> 
+                        <p:menuitem value="Listar" url="listarSelecao.xhtml" />  
+                    </p:submenu> 
+                    <p:submenu label="Fase" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarFase.xhtml" />
+                        <p:menuitem value="Listar" url="listarFase.xhtml" />  
+                    </p:submenu> 
+                    <p:submenu label="Grupo" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarGrupo.xhtml" /> 
+                        <p:menuitem value="Listar" url="listarGrupo.xhtml" />  
+                    </p:submenu> 
+                </p:submenu>  
+
+                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />  
+            </p:menubar>
+            <p:growl id="messages"/>
+
+            <div id="content" class="center_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+
+        </h:form>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:body>
+        <h:form>  
+
+            <p:growl id="messages"/>  
+
+            <h3>Jogo</h3>  
+            <p:menubar>  
+                <p:submenu label="Gerenciar" icon="ui-icon-document">  
+                    <p:submenu label="Jogador" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarJogador.xhtml" />  
+                        <p:menuitem value="Listar" url="listarJogador.xhtml" />  
+                    </p:submenu>  
+                    <p:submenu label="Jogo" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarJogo.xhtml" />
+                        <p:menuitem value="Listar" url="listarJogo.xhtml" />  
+                    </p:submenu> 
+                    <p:submenu label="Seleção" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarSelecao.xhtml" /> 
+                        <p:menuitem value="Listar" url="listarSelecao.xhtml" />  
+                    </p:submenu> 
+                    <p:submenu label="Fase" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarFase.xhtml" />
+                        <p:menuitem value="Listar" url="listarFase.xhtml" />  
+                    </p:submenu> 
+                    <p:submenu label="Grupo" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarGrupo.xhtml" /> 
+                        <p:menuitem value="Listar" url="listarGrupo.xhtml" />  
+                    </p:submenu> 
+                </p:submenu>  
+
+                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />  
+            </p:menubar>  
+
+        </h:form>
+    </h:body>
+</html>
+
