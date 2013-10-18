@@ -36,8 +36,10 @@ public class GrupoBean implements Serializable{
     }
            
     public void abrir(){
-        if(id > 0)
-            setGrupo(repo.abrir(id));
+        if(id > 0){
+            Grupo tmp = repo.abrir(id);
+            setGrupo(tmp);
+        }
     }
     
     public String editar(){
@@ -61,6 +63,7 @@ public class GrupoBean implements Serializable{
         grupo.setDescricao(descricao);
         
         repo.salvar(grupo);
+        listagem = null;
     }
 
     public IGrupoRepositorio getRepo() {
@@ -105,9 +108,6 @@ public class GrupoBean implements Serializable{
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
         this.descricao = grupo.getDescricao();
-    }
+    } 
     
-    
-    
-
 }

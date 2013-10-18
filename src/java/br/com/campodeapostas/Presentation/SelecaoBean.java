@@ -5,6 +5,7 @@
 package br.com.campodeapostas.Presentation;
 
 import br.com.campodeapostas.DomainModel.Grupo;
+import br.com.campodeapostas.DomainModel.IGrupoRepositorio;
 import br.com.campodeapostas.DomainModel.ISelecaoRepositorio;
 import br.com.campodeapostas.DomainModel.Selecao;
 import java.io.Serializable;
@@ -24,10 +25,14 @@ public class SelecaoBean implements Serializable{
     @EJB
     ISelecaoRepositorio repo;
     
+    @EJB
+    IGrupoRepositorio daoGrupo;
+    
     Long id;
     String nome;
     Grupo grupo;
-    String tecnico;    
+    String tecnico; 
+    List<Grupo> listagemGrupos;
     
     List<Selecao> listagem;
     Selecao selecao;
@@ -128,6 +133,14 @@ public class SelecaoBean implements Serializable{
 
     public void setTecnico(String tecnico) {
         this.tecnico = tecnico;
+    }
+
+    public List<Grupo> getListagemGrupos() {
+        return daoGrupo.listarTodos();
+    }
+
+    public void setListagemGrupos(List<Grupo> listagemGrupos) {
+        this.listagemGrupos = listagemGrupos;
     }
 
 }

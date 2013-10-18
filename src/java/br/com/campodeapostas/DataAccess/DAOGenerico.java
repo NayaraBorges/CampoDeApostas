@@ -32,7 +32,8 @@ public abstract class DAOGenerico <T> implements IRepositorio<T>{
     @Override
     public boolean salvar(T obj) {
          try {
-            getManager().persist(obj);
+            getManager().merge(obj);
+            getManager().flush();            
             return true;
         } catch (Exception e) {  
             e.printStackTrace();
