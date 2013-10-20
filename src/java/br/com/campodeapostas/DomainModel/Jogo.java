@@ -37,10 +37,8 @@ public class Jogo implements Serializable{
     private int placar1;
     @Column(name="Placar2")
     private int placar2;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataJogo;
-    @Temporal(javax.persistence.TemporalType.TIME)
-    private Date hora;
     @OneToOne
     private Estadio estadio;
     
@@ -68,14 +66,6 @@ public class Jogo implements Serializable{
 
     public void setFase(Fase fase) {
         this.fase = fase;
-    }
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
     }
 
     public Long getId() {
@@ -128,7 +118,6 @@ public class Jogo implements Serializable{
         hash = 43 * hash + this.placar1;
         hash = 43 * hash + this.placar2;
         hash = 43 * hash + Objects.hashCode(this.dataJogo);
-        hash = 43 * hash + Objects.hashCode(this.hora);
         hash = 43 * hash + Objects.hashCode(this.estadio);
         return hash;
     }
@@ -161,9 +150,6 @@ public class Jogo implements Serializable{
             return false;
         }
         if (!Objects.equals(this.dataJogo, other.dataJogo)) {
-            return false;
-        }
-        if (!Objects.equals(this.hora, other.hora)) {
             return false;
         }
         if (!Objects.equals(this.estadio, other.estadio)) {

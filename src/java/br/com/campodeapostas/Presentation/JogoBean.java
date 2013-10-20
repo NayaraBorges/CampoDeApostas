@@ -6,8 +6,12 @@ package br.com.campodeapostas.Presentation;
 
 import br.com.campodeapostas.DomainModel.Estadio;
 import br.com.campodeapostas.DomainModel.Fase;
+import br.com.campodeapostas.DomainModel.IEstadioRepositorio;
+import br.com.campodeapostas.DomainModel.IFaseRepositorio;
 import br.com.campodeapostas.DomainModel.IJogoRepositorio;
+import br.com.campodeapostas.DomainModel.ISelecaoRepositorio;
 import br.com.campodeapostas.DomainModel.Jogo;
+import br.com.campodeapostas.DomainModel.Posicao;
 import br.com.campodeapostas.DomainModel.Selecao;
 import java.io.Serializable;
 import java.util.Date;
@@ -27,6 +31,15 @@ public class JogoBean implements Serializable{
     @EJB
     IJogoRepositorio repo;
 
+    @EJB
+    ISelecaoRepositorio daoSelecao;
+    
+    @EJB
+    IFaseRepositorio daoFase;
+    
+    @EJB
+    IEstadioRepositorio daoEstadio;
+    
     Long id;
     Fase fase;
     Selecao selecao1;
@@ -34,8 +47,12 @@ public class JogoBean implements Serializable{
     int placar1;
     int placar2;
     Date data;
-    Date hora;
     Estadio estadio;
+    List<Selecao> listagemSelecoes;
+    List<Fase> listagemFases;
+    List<Estadio> listagemEstadios;
+    
+    
    
 
     List<Jogo> listagem;
@@ -44,7 +61,7 @@ public class JogoBean implements Serializable{
     public JogoBean (){
         id = 0L;
         placar1 = 0;
-        placar2 = 0;
+        placar2 = 0;        
     }
     
     public void abrir(){
@@ -71,7 +88,6 @@ public class JogoBean implements Serializable{
             jogo = new Jogo();
         
         jogo.setData(data);
-        jogo.setHora(hora);
         jogo.setEstadio(estadio);
         jogo.setFase(fase);
         jogo.setPlacar1(placar1);
@@ -146,14 +162,6 @@ public class JogoBean implements Serializable{
         this.data = data;
     }
 
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
-    }
-
     public Estadio getEstadio() {
         return estadio;
     }
@@ -161,9 +169,7 @@ public class JogoBean implements Serializable{
     public void setEstadio(Estadio estadio) {
         this.estadio = estadio;
     }
-
-   
-  
+    
     public List<Jogo> getListagem() {
        if (listagem == null){
             listagem = repo.listarTodos();
@@ -190,5 +196,29 @@ public class JogoBean implements Serializable{
        
     }
     
+     public List<Selecao> getListagemSelecoes() {
+        return daoSelecao.listarTodos();
+    }
+
+    public void setListagemSelecoes(List<Selecao> listagemSelecoes) {
+        this.listagemSelecoes = listagemSelecoes;
+    }
+
+    public List<Fase> getListagemFases() {
+        return daoFase.listarTodos();
+    }
+
+    public void setListagemFases(List<Fase> listagemFases) {
+        this.listagemFases = listagemFases;
+    }
+
+    public List<Estadio> getListagemEstadios() {
+        return daoEstadio.listarTodos();
+    }
+
+    public void setListagemEstadios(List<Estadio> listagemEstadios) {
+        this.listagemEstadios = listagemEstadios;
+    }
+
     
 }

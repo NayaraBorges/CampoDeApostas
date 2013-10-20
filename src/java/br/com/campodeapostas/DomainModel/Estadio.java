@@ -24,14 +24,14 @@ public class Estadio implements Serializable{
     @Column(name="Cidade")
     private String cidade;
     @Column(name="Estado")
-    private String Estado;
+    private String estado;
    
     public String getEstado() {
-        return Estado;
+        return estado;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getCidade() {
@@ -64,7 +64,7 @@ public class Estadio implements Serializable{
         hash = 31 * hash + Objects.hashCode(this.id);
         hash = 31 * hash + Objects.hashCode(this.nome);
         hash = 31 * hash + Objects.hashCode(this.cidade);
-        hash = 31 * hash + Objects.hashCode(this.Estado);
+        hash = 31 * hash + Objects.hashCode(this.estado);
         
         return hash;
     }
@@ -87,11 +87,16 @@ public class Estadio implements Serializable{
         if (!Objects.equals(this.cidade, other.cidade)) {
             return false;
         }
-        if (!Objects.equals(this.Estado, other.Estado)) {
+        if (!Objects.equals(this.estado, other.estado)) {
             return false;
         }
        
         return true;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }   
     
 }

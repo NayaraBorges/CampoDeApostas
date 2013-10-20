@@ -25,9 +25,10 @@ public class Jogador implements Serializable{
     private int numeroCamisa;
     @ManyToOne
     private Selecao selecao;
+    @Enumerated(EnumType.STRING)
+    private Posicao posicao;
     
 
-    
     public Long getId() {
         return id;
     }
@@ -67,7 +68,6 @@ public class Jogador implements Serializable{
     public void setSelecao(Selecao selecao) {
         this.selecao = selecao;
     }
-    private Posicao posicao;
 
     @Override
     public int hashCode() {
@@ -78,7 +78,7 @@ public class Jogador implements Serializable{
         hash = 79 * hash + Objects.hashCode(this.selecao);
         hash = 79 * hash + Objects.hashCode(this.posicao);
         return hash;
-    }
+    }   
 
     @Override
     public boolean equals(Object obj) {

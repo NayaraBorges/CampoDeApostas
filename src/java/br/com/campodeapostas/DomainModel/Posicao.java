@@ -10,13 +10,13 @@ package br.com.campodeapostas.DomainModel;
  */
 public enum Posicao {
     
-    GOLEIRO ("Goleiro"),
-    ZAGUEIRO ("Zagueiro"),
-    LATERAL_DIREITO ("Lateral direito"),
-    LATERAL_ESQUERDO ("Lateral esquerdo"),
-    VOLANTE ("Volante"),
-    MEIO_DE_CAMPO ("Meio de campo"),
-    ATACANTE ("Atacante");
+    Goleiro ("Goleiro"),
+    Zagueiro ("Zagueiro"),
+    Lateral_direito ("Lateral direito"),
+    Lateral_esquerdo ("Lateral esquerdo"),
+    Volante ("Volante"),
+    Meio_de_campo ("Meio de campo"),
+    Atacante ("Atacante");
     
     public String nome;
     

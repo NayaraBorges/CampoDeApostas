@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Jogo</title>
     </h:head>
@@ -18,8 +19,15 @@
                 <p:inputText id="txtNome" value="#{jogador.nome}" />
                 <h:outputLabel value="Número da camisa" /> 
                 <p:inputText id="txtNumeroCamisa" value="#{jogador.numeroCamisa}"/>
-                <h:outputText value="Seleção"/>  
-                <p:inputText id="txtSelecao" value="#{jogador.selecao}" />
+               <h:outputText value="Seleção"/>  
+               <p:selectOneMenu value="#{jogador.selecao}" converter="${selecaoConverter}">
+                    <f:selectItems value="#{jogador.listagemSelecoes}" />
+                </p:selectOneMenu>
+               <h:outputText value="Posição"/>  
+               <p:selectOneMenu value="#{jogador.posicao}" converter="${posicaoConverter}">
+                    <f:selectItems value="#{jogador.listagemPosicoes}" />
+                </p:selectOneMenu>
+                
                  <p:commandButton id="salvar" value="Salvar" onclick="msgSalvar.show();" />
                 <p:commandButton id="cancelar" value="Cancelar" oncomplete="msgSalvar.hide()" />
             </h:panelGrid>

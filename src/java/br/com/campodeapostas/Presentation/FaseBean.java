@@ -60,6 +60,7 @@ public class FaseBean implements Serializable{
         fase.setDescricao(descricao);
         
         repo.salvar(fase);
+        listagem = null;
     }
     
 

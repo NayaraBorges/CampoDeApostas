@@ -17,10 +17,8 @@
     
                 <h:outputText value="Nome"/>  
                 <p:inputText id="txtNome" value="#{selecao.nome}" />
-                <!--<h:outputLabel value="Grupo" /> 
-                <p:inputText id="txtGrupo" value="#{selecao.grupo}"/>-->
-                
-                <p:selectOneMenu value="#{selecao.grupo}" converter="${grupoConverter}">
+                <h:outputLabel value="Grupo" /> 
+               <p:selectOneMenu value="#{selecao.grupo}" converter="${grupoConverter}">
                     <f:selectItems value="#{selecao.listagemGrupos}" />
                 </p:selectOneMenu>
                 

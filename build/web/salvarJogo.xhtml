@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Jogo</title>
     </h:head>
@@ -13,19 +14,32 @@
             <ui:define name="content">
                 <h3>Cadastro de jogos</h3><p/>
             <h:panelGrid columns="2">
-    
+                
+                
                 <h:outputText value="Fase"/>  
-                <p:inputText id="txtFase" value="#{jogo.fase}" />
-                <h:outputLabel value="Data" /> 
-                <p:inputText id="txtData" value="#{jogo.data}"/>
-                <h:outputText value="Hora"/>  
-                <p:inputText id="txtHora" value="#{jogo.hora}" />
+               
+                <p:selectOneMenu value="#{jogo.fase}" converter="${faseConverter}">
+                    <f:selectItems value="#{jogo.listagemFases}" />
+                </p:selectOneMenu>
+                
                 <h:outputText value="Seleção 1"/>  
-                <p:inputText id="txtSelecao1" value="#{jogo.selecao1}" />
+                <p:selectOneMenu value="#{jogo.selecao1}" converter="${selecaoConverter}">
+                    <f:selectItems value="#{jogo.listagemSelecoes}" />
+                </p:selectOneMenu>
                 <h:outputText value="Seleção 2"/>  
-                <p:inputText id="txtSelecao2" value="#{jogo.selecao2}" />
+                 <p:selectOneMenu value="#{jogo.selecao2}" converter="${selecaoConverter}">
+                    <f:selectItems value="#{jogo.listagemSelecoes}" />
+                </p:selectOneMenu>
+                
                 <h:outputText value="Estádio"/>  
-                <p:inputText id="txtEstadio" value="#{jogo.estadio}" />
+                <p:selectOneMenu value="#{jogo.estadio}" converter="${estadioConverter}">
+                    <f:selectItems value="#{jogo.listagemEstadios}" />
+                </p:selectOneMenu>
+                
+                <h:outputText value="Data/Hora"/>    
+                <p:calendar value="#{jogo.data}" pattern="MM/dd/yyyy HH:mm" />  
+                
+                
                 <p:commandButton id="salvar" value="Salvar" onclick="msgSalvar.show();" />
                 <p:commandButton id="cancelar" value="Cancelar" oncomplete="msgSalvar.hide()" />
             </h:panelGrid>

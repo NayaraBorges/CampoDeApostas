@@ -6,11 +6,11 @@ package br.com.campodeapostas.Presentation;
 
 
 import br.com.campodeapostas.DomainModel.IJogadorRepositorio;
+import br.com.campodeapostas.DomainModel.ISelecaoRepositorio;
 import br.com.campodeapostas.DomainModel.Jogador;
+import br.com.campodeapostas.DomainModel.Posicao;
 import br.com.campodeapostas.DomainModel.Selecao;
-import br.com.campodeapostas.DomainModel.Usuario;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -27,11 +27,16 @@ public class JogadorBean implements Serializable{
     @EJB
     IJogadorRepositorio repo;
     
+    @EJB
+    ISelecaoRepositorio daoSelecao;
+    
     Long id;
     String nome;
     int numeroCamisa;
     Selecao selecao;
-   
+    Posicao posicao;
+    List<Selecao> listagemSelecoes;
+    Posicao[] listagemPosicoes;
     
     List<Jogador> listagem;
     Jogador jogador;
@@ -39,7 +44,8 @@ public class JogadorBean implements Serializable{
     public JogadorBean(){
         id = 0L;
         nome = "";
-        numeroCamisa = 0;        
+        numeroCamisa = 0; 
+        listagemPosicoes = Posicao.values();
     }
 
      public void abrir(){
@@ -133,7 +139,34 @@ public class JogadorBean implements Serializable{
         this.nome = jogador.getNome();
         this.numeroCamisa = jogador.getNumeroCamisa();
         this.selecao = jogador.getSelecao();
-    
-        
+        this.posicao = jogador.getPosicao();
     }
+
+    public Posicao getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
+    }
+
+    public List<Selecao> getListagemSelecoes() {
+        return daoSelecao.listarTodos();
+    }
+
+    public void setListagemSelecoes(List<Selecao> listagemSelecoes) {
+        this.listagemSelecoes = listagemSelecoes;
+    }       
+    
+    public Posicao[] getListagemPosicoes() {
+        if (listagemPosicoes == null) {
+            listagemPosicoes = Posicao.values();
+        }
+        return listagemPosicoes;
+    }
+
+    public void setListagemPosicoes(Posicao[] listagemPosicoes) {
+        this.listagemPosicoes = listagemPosicoes;
+    }
+
 }
