@@ -26,11 +26,14 @@
                 <p:selectOneMenu value="#{jogo.selecao1}" converter="${selecaoConverter}">
                     <f:selectItems value="#{jogo.listagemSelecoes}" />
                 </p:selectOneMenu>
+                <h:outputText value="Placar 1"/>  
+                <p:inputText id="txtPlacar1" value="#{jogo.placar1}"/>
                 <h:outputText value="Seleção 2"/>  
                  <p:selectOneMenu value="#{jogo.selecao2}" converter="${selecaoConverter}">
                     <f:selectItems value="#{jogo.listagemSelecoes}" />
                 </p:selectOneMenu>
-                
+                <h:outputText value="Placar 2"/>  
+                <p:inputText id="txtPlacar2" value="#{jogo.placar2}"/>
                 <h:outputText value="Estádio"/>  
                 <p:selectOneMenu value="#{jogo.estadio}" converter="${estadioConverter}">
                     <f:selectItems value="#{jogo.listagemEstadios}" />
