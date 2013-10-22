@@ -16,7 +16,7 @@ import javax.faces.convert.Converter;
  *
  * @author Nayara
  */
-@Named(value = "unidadeConverter")
+@Named(value = "posicaoConverter")
 @SessionScoped
 public class PosicaoConverter implements Serializable, Converter {
 
@@ -41,7 +41,7 @@ public class PosicaoConverter implements Serializable, Converter {
             return "";
         }else{
             Posicao p = (Posicao) value;
-            return p.toString();
+            return p.name();
         }
     }
 }

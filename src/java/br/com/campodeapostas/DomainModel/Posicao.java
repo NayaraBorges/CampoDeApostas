@@ -26,6 +26,13 @@ public enum Posicao {
 
     public String getNome() {
         return this.nome;
-    } 
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    
   
 }

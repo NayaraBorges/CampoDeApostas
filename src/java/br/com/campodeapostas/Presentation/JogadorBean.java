@@ -55,7 +55,7 @@ public class JogadorBean implements Serializable{
     
     public String editar(){
         abrir();
-        return "salvarCamping.xhtml";
+        return "salvarJogador.xhtml";
     }
     
     public String apagar(){
@@ -66,7 +66,7 @@ public class JogadorBean implements Serializable{
     }
     
     public void salvar(){
-        repo.abrir(id);
+        abrir();
         
         if(jogador == null)
             jogador = new Jogador();
