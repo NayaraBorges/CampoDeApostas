@@ -5,8 +5,8 @@
 package br.com.campodeapostas.Presentation;
 
 
-import br.com.campodeapostas.DomainModel.Grupo;
-import br.com.campodeapostas.DomainModel.IGrupoRepositorio;
+import br.com.campodeapostas.DomainModel.IPosicaoRepositorio;
+import br.com.campodeapostas.DomainModel.Posicao;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -19,19 +19,18 @@ import javax.inject.Named;
  *
  * @author Nayara
  */
-@Named(value = "grupo")
+@Named(value = "posicao")
 @SessionScoped
-public class GrupoBean implements Serializable{
-
+public class PosicaoBean implements Serializable{
     @EJB
-    IGrupoRepositorio repo;
-    
+    IPosicaoRepositorio repo;
+
     Long id;
     String descricao;
-    
-    List<Grupo> listagem;
-    Grupo grupo;
 
+    List<Posicao> listagem;
+    Posicao posicao;
+    
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));
@@ -42,32 +41,30 @@ public class GrupoBean implements Serializable{
         return "TemplateGlobal.xhtml";
     }
         
-    public GrupoBean() {
-       id = 0L;
-       descricao = "" ;
+    public PosicaoBean() {
+        id = 0L;
+        descricao = "";
     }
-           
+    
     public void abrir(){
-        if(id > 0){
-            Grupo tmp = repo.abrir(id);
-            setGrupo(tmp);
-        }
+        if(id > 0)
+            setPosicao(repo.abrir(id));
     }
     
     public String editar(){
         abrir();
-        return "salvarGrupo.xhtml";
+        return "salvarPosicao.xhtml";
     }
     
     public String apagar(){
-         try {
+        try {
             abrir();
-            repo.apagar(grupo);
+            repo.apagar(posicao);
             listagem = null;
             exibirMensagem("Excluído com sucesso!");
-            return "listarGrupo.xhtml";
+            return "listarPosicao.xhtml";
         } catch (Exception e) {
-            exibirMensagem("Erro. Grupo não pode ser excluído pois já foi utilizado em outro cadastro.");
+            exibirMensagem("Erro. Posicao não pode ser excluída pois já foi utilizada em outro cadastro.");
             return null;
         }      
     }
@@ -75,21 +72,21 @@ public class GrupoBean implements Serializable{
     public void salvar(){
         abrir();
         
-        if(grupo == null)
-            grupo = new Grupo();
+        if(posicao == null)
+            posicao = new Posicao();
         
-        grupo.setDescricao(descricao);
+        posicao.setDescricao(descricao);
         
-        repo.salvar(grupo);
+        repo.salvar(posicao);
         listagem = null;
         exibirMensagem("Salvo com Sucesso!");
-    }
+    }    
 
-    public IGrupoRepositorio getRepo() {
+    public IPosicaoRepositorio getRepo() {
         return repo;
     }
 
-    public void setRepo(IGrupoRepositorio repo) {
+    public void setRepo(IPosicaoRepositorio repo) {
         this.repo = repo;
     }
 
@@ -109,24 +106,24 @@ public class GrupoBean implements Serializable{
         this.descricao = descricao;
     }
 
-    public List<Grupo> getListagem() {
+    public List<Posicao> getListagem() {
         if(listagem == null){
             listagem = repo.listarTodos();
         }
         return listagem;
     }
 
-    public void setListagem(List<Grupo> listagem) {
+    public void setListagem(List<Posicao> listagem) {
         this.listagem = listagem;
     }
 
-    public Grupo getGrupo() {
-        return grupo;
+    public Posicao getPosicao() {
+        return posicao;
     }
 
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-        this.descricao = grupo.getDescricao();
-    } 
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
+        this.descricao = posicao.getDescricao();
+    }    
     
 }

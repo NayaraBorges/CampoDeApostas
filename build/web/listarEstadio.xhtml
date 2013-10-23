@@ -14,7 +14,7 @@
             <h3>Lista dos estádios</h3><p/>
             <p:dataTable value="#{estadio.listagem}" var="item">
                 <f:facet name="header">
-                    <h:outputText value="Listagem das fases"/>
+                    <h:outputText value="Listagem dos Estádios"/>
                 </f:facet>
                 <p:column filterBy="#{item.id}" sortBy="#{item.id}">
                     <f:facet name="id">
@@ -23,10 +23,16 @@
                     <h:outputText value="#{item.id}"/>
                 </p:column>
                 <p:column filterBy="#{item.nome}" sortBy="#{item.nome}">
-                    <f:facet name="descricao">
-                        <h:outputText value="Descricao"/>
+                    <f:facet name="nome">
+                        <h:outputText value="Nome"/>
                     </f:facet>
                     <h:outputText value="#{item.nome}"/>
+                </p:column>
+                 <p:column filterBy="#{item.estado}" sortBy="#{item.estado}">
+                    <f:facet name="estado">
+                        <h:outputText value="Estado"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estado}"/>
                 </p:column>
                 <p:column>
                     <h:panelGrid columns="2">

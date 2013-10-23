@@ -11,13 +11,14 @@ import br.com.campodeapostas.DomainModel.IFaseRepositorio;
 import br.com.campodeapostas.DomainModel.IJogoRepositorio;
 import br.com.campodeapostas.DomainModel.ISelecaoRepositorio;
 import br.com.campodeapostas.DomainModel.Jogo;
-import br.com.campodeapostas.DomainModel.Posicao;
 import br.com.campodeapostas.DomainModel.Selecao;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -52,12 +53,19 @@ public class JogoBean implements Serializable{
     List<Fase> listagemFases;
     List<Estadio> listagemEstadios;
     
-    
-   
-
     List<Jogo> listagem;
     Jogo jogo;
-   
+    
+    public void exibirMensagem(String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(msg));
+    }
+    
+    public String voltar() {
+        listagem = null;
+        return "TemplateGlobal.xhtml";
+    }
+    
     public JogoBean (){
         id = 0L;
         placar1 = 0;
@@ -75,10 +83,16 @@ public class JogoBean implements Serializable{
     }
     
     public String apagar(){
-        abrir();
-        repo.apagar(jogo);
-        listagem = null;
-        return "listarJogo.xhtml";
+       try {
+            abrir();
+            repo.apagar(jogo);
+            listagem = null;
+            exibirMensagem("Excluído com sucesso!");
+            return "listarJogo.xhtml";
+        } catch (Exception e) {
+            exibirMensagem("Erro. Jogo não pode ser excluído pois já foi utilizado em outro cadastro.");
+            return null;
+        }      
     }
     
     public void salvar(){
@@ -96,6 +110,7 @@ public class JogoBean implements Serializable{
         jogo.setSelecao2(selecao2);
       
         repo.salvar(jogo);
+        exibirMensagem("Salvo com Sucesso!");
     }
 
     public IJogoRepositorio getRepo() {

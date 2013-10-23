@@ -6,6 +6,7 @@ package br.com.campodeapostas.Presentation;
 
 
 import br.com.campodeapostas.DomainModel.IJogadorRepositorio;
+import br.com.campodeapostas.DomainModel.IPosicaoRepositorio;
 import br.com.campodeapostas.DomainModel.ISelecaoRepositorio;
 import br.com.campodeapostas.DomainModel.Jogador;
 import br.com.campodeapostas.DomainModel.Posicao;
@@ -14,6 +15,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -30,22 +33,34 @@ public class JogadorBean implements Serializable{
     @EJB
     ISelecaoRepositorio daoSelecao;
     
+    @EJB
+    IPosicaoRepositorio daoPosicao;
+    
     Long id;
     String nome;
     int numeroCamisa;
     Selecao selecao;
     Posicao posicao;
     List<Selecao> listagemSelecoes;
-    Posicao[] listagemPosicoes;
+    List<Posicao> listagemPosicoes;
     
     List<Jogador> listagem;
     Jogador jogador;
     
+    public void exibirMensagem(String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(msg));
+    }
+    
+    public String voltar() {
+        listagem = null;
+        return "TemplateGlobal.xhtml";
+    }
+        
     public JogadorBean(){
         id = 0L;
         nome = "";
         numeroCamisa = 0; 
-        listagemPosicoes = Posicao.values();
     }
 
      public void abrir(){
@@ -59,10 +74,16 @@ public class JogadorBean implements Serializable{
     }
     
     public String apagar(){
-        abrir();
-        repo.apagar(jogador);
-        listagem = null;
-        return "listarJogador.xhtml";
+         try {
+            abrir();
+            repo.apagar(jogador);
+            listagem = null;
+            exibirMensagem("Excluído com sucesso!");
+            return "listarJogador.xhtml";
+        } catch (Exception e) {
+            exibirMensagem("Erro. Jogador não pode ser excluído pois já foi utilizado em outro cadastro.");
+            return null;
+        }      
     }
     
     public void salvar(){
@@ -74,8 +95,10 @@ public class JogadorBean implements Serializable{
         jogador.setNome(nome);
         jogador.setNumeroCamisa(numeroCamisa);
         jogador.setSelecao(selecao);
+        jogador.setPosicao(posicao);
         
         repo.salvar(jogador);
+        exibirMensagem("Salvo com Sucesso!");
     }
    
     public List<Jogador> getListagem() {
@@ -158,14 +181,11 @@ public class JogadorBean implements Serializable{
         this.listagemSelecoes = listagemSelecoes;
     }       
     
-    public Posicao[] getListagemPosicoes() {
-        if (listagemPosicoes == null) {
-            listagemPosicoes = Posicao.values();
-        }
-        return listagemPosicoes;
+    public List<Posicao> getListagemPosicoes() {
+        return daoPosicao.listarTodos();
     }
 
-    public void setListagemPosicoes(Posicao[] listagemPosicoes) {
+    public void setListagemPosicoes(List<Posicao> listagemPosicoes) {
         this.listagemPosicoes = listagemPosicoes;
     }
 

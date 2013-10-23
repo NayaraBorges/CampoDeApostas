@@ -28,6 +28,18 @@
                     </f:facet>
                     <h:outputText value="#{item.nome}"/>
                 </p:column>
+                 <p:column filterBy="#{item.selecao}" sortBy="#{item.selecao}">
+                    <f:facet name="selecao">
+                        <h:outputText value="Selecao"/>
+                    </f:facet>
+                    <h:outputText value="#{item.selecao}"/>
+                </p:column>
+                 <p:column filterBy="#{item.posicao}" sortBy="#{item.posicao}">
+                    <f:facet name="posicao">
+                        <h:outputText value="Posicao"/>
+                    </f:facet>
+                    <h:outputText value="#{item.posicao}"/>
+                </p:column>
                 <p:column>
                     <h:panelGrid columns="2">
                         <h:commandLink value="Editar" action="#{jogador.editar()}">

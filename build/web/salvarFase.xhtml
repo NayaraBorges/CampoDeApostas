@@ -17,7 +17,7 @@
                     <h:outputText value="Descrição"/>  
                     <p:inputText value="#{fase.descricao}" />
                     <p:commandButton id="salvar" value="Salvar" onclick="msgSalvar.show();" />
-                    <p:commandButton id="cancelar" value="Cancelar" />
+                    <p:commandButton id="cancelar" value="Cancelar" action="${fase.voltar()}"/>
                 </h:panelGrid>
 
                 <p:confirmDialog id="dlgSalvar" message="Confirma gravação dos dados?"

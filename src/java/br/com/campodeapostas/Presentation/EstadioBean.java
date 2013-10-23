@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -32,6 +34,16 @@ public class EstadioBean implements Serializable{
     List<Estadio> listagem;
     Estadio estadio;
     
+    public void exibirMensagem(String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(msg));
+    }
+    
+    public String voltar() {
+        listagem = null;
+        return "TemplateGlobal.xhtml";
+    }
+        
     public EstadioBean() {
         id = 0L;
         nome = "";
@@ -50,10 +62,16 @@ public class EstadioBean implements Serializable{
     }
     
     public String apagar(){
-        abrir();
-        repo.apagar(estadio);
-        listagem = null;
-        return "listarEstadio.xhtml";
+       try {
+            abrir();
+            repo.apagar(estadio);
+            listagem = null;
+            exibirMensagem("Excluído com sucesso!");
+            return "listarEstadio.xhtml";
+        } catch (Exception e) {
+            exibirMensagem("Erro. Estádio não pode ser excluído pois já foi utilizado em outro cadastro.");
+            return null;
+        }           
     }
     
     public void salvar(){
@@ -68,6 +86,7 @@ public class EstadioBean implements Serializable{
         
         repo.salvar(estadio);
         listagem = null;
+        exibirMensagem("Salvo com Sucesso!");
     }
     
 

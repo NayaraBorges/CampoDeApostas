@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -37,6 +39,16 @@ public class SelecaoBean implements Serializable{
     List<Selecao> listagem;
     Selecao selecao;
     
+    public void exibirMensagem(String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(msg));
+    }
+    
+    public String voltar() {
+        listagem = null;
+        return "TemplateGlobal.xhtml";
+    }
+        
     public SelecaoBean (){
         id = 0L;
         nome = "";
@@ -53,10 +65,16 @@ public class SelecaoBean implements Serializable{
     }
     
     public String apagar(){
-        abrir();
-        repo.apagar(selecao);
-        listagem = null;
-        return "listarSelecao.xhtml";
+         try {
+            abrir();
+            repo.apagar(selecao);
+            listagem = null;
+            exibirMensagem("Excluído com sucesso!");
+            return "listarSelecao.xhtml";
+        } catch (Exception e) {
+            exibirMensagem("Erro. Selecao não pode ser excluída pois já foi utilizada em outro cadastro.");
+            return null;
+        }      
     }
     
     public void salvar(){
@@ -70,6 +88,7 @@ public class SelecaoBean implements Serializable{
         selecao.setTecnico(tecnico);
               
         repo.salvar(selecao);
+        exibirMensagem("Salvo com Sucesso!");
     }
     
     public ISelecaoRepositorio getRepo() {

@@ -25,7 +25,7 @@ public class Jogador implements Serializable{
     private int numeroCamisa;
     @ManyToOne
     private Selecao selecao;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Posicao posicao;
     
 
@@ -71,14 +71,14 @@ public class Jogador implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + this.numeroCamisa;
-        hash = 79 * hash + Objects.hashCode(this.selecao);
-        hash = 79 * hash + Objects.hashCode(this.posicao);
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + this.numeroCamisa;
+        hash = 71 * hash + Objects.hashCode(this.selecao);
+        hash = 71 * hash + Objects.hashCode(this.posicao);
         return hash;
-    }   
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -101,11 +101,10 @@ public class Jogador implements Serializable{
         if (!Objects.equals(this.selecao, other.selecao)) {
             return false;
         }
-        if (this.posicao != other.posicao) {
+        if (!Objects.equals(this.posicao, other.posicao)) {
             return false;
         }
         return true;
-    }
-    
+    }    
     
 }

@@ -4,35 +4,74 @@
  */
 package br.com.campodeapostas.DomainModel;
 
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author Nayara
  */
-public enum Posicao {
+@Entity
+@Table(name="Posicao")
+public class Posicao implements Serializable{
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    protected Long id;
     
-    Goleiro ("Goleiro"),
-    Zagueiro ("Zagueiro"),
-    Lateral_direito ("Lateral direito"),
-    Lateral_esquerdo ("Lateral esquerdo"),
-    Volante ("Volante"),
-    Meio_de_campo ("Meio de campo"),
-    Atacante ("Atacante");
-    
-    public String nome;
-    
-    Posicao(String nome){
-        this.nome = nome;
+    @Column(name="Descricao")
+    private String descricao;
+
+    public String getDescricao() {
+        return descricao;
     }
 
-    public String getNome() {
-        return this.nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.descricao);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Posicao other = (Posicao) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return nome;
+        return descricao;
     }
-    
-    
-  
+        
 }

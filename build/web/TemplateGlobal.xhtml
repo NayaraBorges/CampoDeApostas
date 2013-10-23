@@ -43,6 +43,10 @@
                         <p:menuitem value="Cadastrar" url="salvarEstadio.xhtml" /> 
                         <p:menuitem value="Listar" url="listarEstadio.xhtml" />  
                     </p:submenu> 
+                    <p:submenu label="Posição" icon="ui-icon-contact">  
+                        <p:menuitem value="Cadastrar" url="salvarPosicao.xhtml" /> 
+                        <p:menuitem value="Listar" url="listarPosicao.xhtml" />  
+                    </p:submenu> 
                 </p:submenu>  
 
                 <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />  
@@ -50,7 +54,7 @@
             <p:growl id="messages"/>
 
             <div id="content" class="center_content">
-                <ui:insert name="content">Content</ui:insert>
+                <ui:insert name="content"></ui:insert>
             </div>
 
         </h:form>

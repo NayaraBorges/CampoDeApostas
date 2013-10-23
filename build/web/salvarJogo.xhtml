@@ -44,7 +44,7 @@
                 
                 
                 <p:commandButton id="salvar" value="Salvar" onclick="msgSalvar.show();" />
-                <p:commandButton id="cancelar" value="Cancelar" oncomplete="msgSalvar.hide()" />
+                <p:commandButton id="cancelar" value="Cancelar" action="${jogo.voltar()}" />
             </h:panelGrid>
 
             <p:confirmDialog id="dlgSalvar" message="Confirma gravação dos dados?"

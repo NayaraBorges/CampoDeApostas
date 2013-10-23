@@ -22,6 +22,18 @@
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
+                <p:column filterBy="#{item.estadio}" sortBy="#{item.estadio}">
+                    <f:facet name="estadio">
+                        <h:outputText value="Estadio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estadio}"/>
+                </p:column>
+                 <p:column filterBy="#{item.fase}" sortBy="#{item.fase}">
+                    <f:facet name="fase">
+                        <h:outputText value="Fase"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fase}"/>
+                </p:column>
                 <p:column filterBy="#{item.data}" sortBy="#{item.data}">
                     <f:facet name="data">
                         <h:outputText value="Data"/>
