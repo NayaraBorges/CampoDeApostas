@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Campo de apostas - O jogo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="stylesheet" href="resources/css/bootstrap.css" type="text/css"/>
+  <link rel="stylesheet" href="resources/css/style.css" type="text/css">
+
+
+  
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+</head>
+
+<body class="grama">
+	<div id="tela_jogos" class="container">
+		<div class="row">
+			<div class="span8 offset2">
+				<div id="titulo_jogo" class="hero-unit">
+					<small>Faça sua aposta</small>
+					<h1>Brasil X Chile</h1>
+				</div>
+				<div class="row">
+					<div id="placar" class="span4">
+						Placar: <input type="number" id="placar1" name="placar1" class="input-mini" min="0" required pattern="^[0-9]+$" />
+					</div>
+					<div class="span4">
+						<input type="number" id="placar2" class="input-mini" name="placar2"/>
+					</div>
+				</div>
+				<div class="row" id="jogadores-container">
+					<div id="jog1" class="span4">
+												
+					</div>
+					<div id="jog2" class="span4">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="./jogar.html" class="btn btn-info botao-voltar" type="button">Voltar</a>
+		<a href="./jogar.html" class="btn btn-info botao-salvar pull-right" type="button">Salvar</a>
+	</div>
+	
+	<div class="hide">
+		<select id="time1">
+			<option value="idJogadorBD">Jogadores</option>
+		</select>
+		<select id="time2">
+			<option>Jogadores</option>
+		</select>
+		
+		
+	</div>
+	
+	<script>
+		$("#placar1").on("change", function() {
+			var num_gols = parseInt(this.value);
+			$("#jog1").html('');
+			for (var i = 1; i <= num_gols; i++) {
+				var copia_select = $( '<select name="jogadores1[]">'+$('#time1').html()+'</select>' );
+				copia_select.appendTo('#jog1');
+			}
+		});
+		
+		$("#placar2").on("change", function() {
+			var num_gols = parseInt(this.value);
+			$("#jog2").html('');
+			for (var i = 1; i <= num_gols; i++) {
+				var copia_select = $( '<select name="jogadores2[]">'+$('#time2').html()+'</select>' );
+				copia_select.appendTo('#jog2');
+			}
+		});
+	</script>
+
+</body>
+</html>
