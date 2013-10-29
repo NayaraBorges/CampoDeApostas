@@ -28,7 +28,7 @@ public class Selecao implements Serializable{
     private String nome;
     @ManyToOne
     private Grupo grupo;
-    
+     @Column(name="Tecnico")
     private String tecnico;
    
     public Grupo getGrupo() {
