@@ -56,6 +56,36 @@ public class JogoBean implements Serializable{
     List<Jogo> listagem;
     Jogo jogo;
     
+    public String apostar(){
+        return "jogos.html";
+    }
+    
+    
+    public void faseGrupo(){
+        listagem = repo.listarPorFase(daoFase.abrir(1L));
+        
+    }
+    
+    public void oitavas(){
+        listagem = repo.listarPorFase(daoFase.abrir(2L));
+    }
+    
+    public void quartas(){
+        
+    }
+    
+    public void semiFinais(){
+        
+    }
+    
+    public void terceiroLugar(){
+        
+    }
+    
+    public void primeiroLugar(){
+        
+    }
+    
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));

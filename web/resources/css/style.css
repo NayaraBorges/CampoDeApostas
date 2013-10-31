@@ -1,8 +1,5 @@
-#tela {
-	background: url(../img/futebol-de-campo.jpg);
-}
-
-#tela_info{
+#tela_info,
+#tela{
 	background: url(../img/copa.jpg);
 	margin-left: 170px;
 }
@@ -15,7 +12,9 @@ body.grama {
 #tela_ranking,
 #tela_jogar,
 #tela_jogos,
-#tela_resultado	{
+#tela_resultado,
+#tela_estadio,
+#tela_paises	{
 	margin-top: 30px;
 	background: rgba(255,255,255,0.25);
 	padding: 10px;
@@ -36,17 +35,8 @@ body.grama {
 	box-shadow: 0px 0px 50px rgba(0,0,0,0.4);
 }
 
-#titulo {
-	margin: 15px 0 0 1%;
-	color: #FFF;
-}
-
 .hero-unit {
 	background: none;
-}
-
-#botoes {
-	margin-top: 30px;
 }
 
 .btn-home {
@@ -94,11 +84,45 @@ ul#fases > li > a {
 	margin-right:20px;
 }
 
-#tabela_ranking{
+#botoes_home{
+	min-height: 450px;
+	margin-top: 50px;
+	margin-right:20px;
+}
+
+#tabela_ranking
+#estadios
+#paises{
 	min-height:450px;
 }
 
-#titulo_info{
+#titulo_info,
+#titulo_home{
 	margin-right:30px;
 	margin-top:70px;
+}
+
+#titulo_estadios{
+	font-size:20px;
+}
+
+
+.botao-salvar{
+	margin-right:40px;
+	margin-bottom: 20px;
+}
+
+.botao-voltar-estadio{
+	margin-left: 40px;
+	margin-bottom:0px;
+}
+
+.botao-voltar-copa{
+	margin-left: 40px;
+	margin-top:150px;
+}
+
+#img_paises,
+#fonte_paises{
+	margin-left: 240px;
 }
