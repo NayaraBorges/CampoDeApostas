@@ -25,6 +25,8 @@ public class Usuario implements Serializable{
     protected Long id;
     @Column(name="Login")
     private String login;
+    @Column(name="Senha")
+    private String senha;
     @Column(name="Ranking")
     private int ranking;
     @Column(name="Administrador")
@@ -38,6 +40,14 @@ public class Usuario implements Serializable{
         this.administrador = administrador;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+   
     public Long getId() {
         return id;
     }
@@ -64,11 +74,12 @@ public class Usuario implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.login);
-        hash = 83 * hash + this.ranking;
-        hash = 83 * hash + Objects.hashCode(this.administrador);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.login);
+        hash = 97 * hash + Objects.hashCode(this.senha);
+        hash = 97 * hash + this.ranking;
+        hash = 97 * hash + Objects.hashCode(this.administrador);
         return hash;
     }
 
@@ -87,6 +98,9 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
         if (this.ranking != other.ranking) {
             return false;
         }
@@ -95,5 +109,7 @@ public class Usuario implements Serializable{
         }
         return true;
     }
+
+    
     
 }

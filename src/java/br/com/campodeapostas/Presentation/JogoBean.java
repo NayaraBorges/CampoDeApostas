@@ -57,7 +57,7 @@ public class JogoBean implements Serializable{
     Jogo jogo;
     
     public String apostar(){
-        return "jogos.html";
+        return "salvarAposta.html";
     }
     
     

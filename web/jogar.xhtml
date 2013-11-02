@@ -55,7 +55,7 @@ and open the template in the editor.
                             <li id="fase_2"><h:commandLink value="Oitavas" action="#{jogo.oitavas()}"/></li>
                             <li id="fase_3"><h:commandLink value="Quartas" action="#{jogo.quartas()}"/></li>
                             <li id="fase_4"><h:commandLink value="Semi-finais" action="#{jogo.semiFinais()}"/></li>
-                            <li id="fase_5"><h:commandLink value="3 lugar" action="#{jogo.terceiroLugar()}"/></li>
+                            <li id="fase_5"><h:commandLink value="3º lugar" action="#{jogo.terceiroLugar()}"/></li>
                             <li id="fase_6"><h:commandLink value="Final" action="#{jogo.primeiroLugar()}"/></li>
 			</ul>
              <h:dataTable value="#{jogo.listagem}" var="j" >
@@ -89,15 +89,6 @@ and open the template in the editor.
                             
                              
                     </h:form>
-                        
-						
-			<script type="xhtml">
-				function seleciona_fase(id) {
-					$('#fases').find('li.active').removeClass('active');
-					$('#fase_'+id).addClass('active');
-					$('#tabela_jogos').load('./tabelajogo.xhtml?id='+id);
-				}
-			</script>
 			<a href="./index.html" class="btn btn-info botao-voltar" type="button">Voltar</a>
 		</div>
 	</div>
