@@ -5,6 +5,7 @@
 package br.com.campodeapostas.Presentation;
 
 import br.com.campodeapostas.DomainModel.Aposta;
+import br.com.campodeapostas.DomainModel.ApostaGols;
 import br.com.campodeapostas.DomainModel.IApostaRepositorio;
 import br.com.campodeapostas.DomainModel.Jogo;
 import br.com.campodeapostas.DomainModel.Usuario;
@@ -15,6 +16,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 
 /**
@@ -26,15 +28,15 @@ import javax.inject.Named;
 public class ApostaBean implements Serializable{
 
     @EJB
-    IApostaRepositorio repo;
-
-    
+    IApostaRepositorio repo;   
     
     Long id;
     int placar1;
     int placar2;
     Date dataAposta;
     Usuario usuario;
+    List<ApostaGols> listaGols1;
+    List<ApostaGols> listaGols2;
     Jogo jogo;
     
     List<Aposta> listagem;
@@ -94,6 +96,14 @@ public class ApostaBean implements Serializable{
       
         repo.salvar(aposta);
         exibirMensagem("Salvo com Sucesso!");
+    }
+    
+    public void salvarJogador1(ValueChangeEvent evento){
+        aposta.setListaGols1(listaGols1);
+    }
+    
+    public void salvarJogador2(ValueChangeEvent evento){
+        aposta.setListaGols2(listaGols2);
     }
 
     public IApostaRepositorio getRepo() {
@@ -163,6 +173,22 @@ public class ApostaBean implements Serializable{
         this.listagem = listagem;
     }
 
+    public List<ApostaGols> getListaGols1() {
+        return listaGols1;
+    }
+
+    public void setListaGols1(List<ApostaGols> listaGols1) {
+        this.listaGols1 = listaGols1;
+    }
+
+    public List<ApostaGols> getListaGols2() {
+        return listaGols2;
+    }
+
+    public void setListaGols2(List<ApostaGols> listaGols2) {
+        this.listaGols2 = listaGols2;
+    }
+    
     public Aposta getAposta() {
         return aposta;
     }

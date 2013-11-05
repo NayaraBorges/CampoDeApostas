@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <head>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
      
   <title>Campo de apostas - O jogo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-
-	<!--link rel="stylesheet/less" href="resources/less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="resources/less/responsive.less" type="text/css" /-->
-	<!--script src="resources/js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 	
-	<link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
-	<link href="resources/css/style.css" rel="stylesheet"/>
-
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="resources/js/html5shiv.js"></script>
-  <![endif]-->
-
-  <!-- Fav and touch icons -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="resources/css/style.css" rel="stylesheet"/>
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="resources/img/apple-touch-icon-144-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="resources/img/apple-touch-icon-114-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="resources/img/apple-touch-icon-72-precomposed.png"/>
@@ -40,25 +24,24 @@ and open the template in the editor.
 	<script type="text/javascript" src="resources/js/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="resources/js/scripts.js"></script>
-</head>
+</h:head>
 
-<body class="grama">
+<h:body class="grama">
     <h:form>
 	<div id="tela_jogos" class="container">
 		<div class="row">
 			<div class="span8 offset2">
 				<div id="titulo_jogo" class="hero-unit">
 					<small>Faça sua aposta</small>
-                                        <h1>#{aposta.jogo.selecao1} "X" #{aposta.jogo.selecao2}</h1>
+                                        <h1>#{aposta.jogo.selecao1.nome} "X" #{aposta.jogo.selecao2.nome}</h1>
 				</div>
 				<div class="row">
 					<div id="placar" class="span4">
-						Placar: <input type="number" id="placar1" name="placar1" class="input-mini" min="0" pattern="^[0-9]+$" />
-                                                <h:inputText value="#{aposta.placar1}"/>
+						Placar: 
+                                                 <p:spinner id="placar1" value="#{aposta.placar1}" min="0" max="10"/>  
 					</div>
 					<div class="span4">
-						<input type="number" id="placar2" class="input-mini" name="placar2"/>
-                                                <h:inputText value="#{aposta.placar2}"/>
+                                                <p:spinner id="placar2" value="#{aposta.placar2}" min="0" max="10"/> 
 					</div>
 				</div>
 				<div class="row" id="jogadores-container">
@@ -71,8 +54,8 @@ and open the template in the editor.
 				</div>
 			</div>
 		</div>
-		<a href="./jogar.html" class="btn btn-info botao-voltar" type="button">Voltar</a>
-		<a href="./jogar.html" class="btn btn-info botao-salvar pull-right" type="button">Salvar</a>
+		<a href="./jogar.xhtml" class="btn btn-info botao-voltar" type="button">Voltar</a>
+		<a href="./jogar.xhtml" class="btn btn-info botao-salvar pull-right" type="button">Salvar</a>
 	</div>
 	
 	<div class="hide">
@@ -85,26 +68,23 @@ and open the template in the editor.
 		
 		
 	</div>
-	
-	<script>
-		$("#placar1").on("change", function() {
-			var num_gols = parseInt(this.value);
-			$("#jog1").html('');
-			for (var i = 1; i <= num_gols; i++) {
-				var copia_select = $( '<select name="jogadores1[]">'+$('#time1').html()+'</select>' );
-				copia_select.appendTo('#jog1');
-			}
-		});
-		
-		$("#placar2").on("change", function() {
-			var num_gols = parseInt(this.value);
-			$("#jog2").html('');
-			for (var i = 1; i <= num_gols; i++) {
-				var copia_select = $( '<select name="jogadores2[]">'+$('#time2').html()+'</select>' );
-				copia_select.appendTo('#jog2');
-			}
-		});
-	</script>
+	<c:forEach begin="1" end="#{aposta.placar1}">
+            <div>
+                <p:selectOneMenu value="#{aposta.listaGols1}" converter="${jogadorConverter}" valueChangeListener="#{aposta.salvarJogador1}" 
+                     onchange="submit();">
+                    <f:selectItems value="#{aposta.jogo.selecao1.jogadores}" />
+                </p:selectOneMenu>
+            </div>
+        </c:forEach>
+        <c:forEach begin="1" end="#{aposta.placar2}">
+            <div>
+                <p:selectOneMenu value="#{aposta.listaGols2}" converter="${jogadorConverter}" valueChangeListener="#{aposta.salvarJogador2}" 
+                     onchange="submit();">
+                    <f:selectItems value="#{aposta.jogo.selecao2.jogadores}" />
+                </p:selectOneMenu>
+            </div>
+        </c:forEach>
+        
 </h:form>
-</body>
+</h:body>
 </html>

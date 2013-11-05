@@ -6,6 +6,7 @@ package br.com.campodeapostas.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -32,6 +33,26 @@ public class Aposta implements Serializable{
     private Usuario usuario;
     @OneToOne
     private Jogo jogo;
+    @OneToMany
+    private List<ApostaGols> listaGols1;
+    @OneToMany
+    private List<ApostaGols> listaGols2;
+
+    public List<ApostaGols> getListaGols1() {
+        return listaGols1;
+    }
+
+    public void setListaGols1(List<ApostaGols> listaGols1) {
+        this.listaGols1 = listaGols1;
+    }
+
+    public List<ApostaGols> getListaGols2() {
+        return listaGols2;
+    }
+
+    public void setListaGols2(List<ApostaGols> listaGols2) {
+        this.listaGols2 = listaGols2;
+    }
 
     public Date getDataAposta() {
         return dataAposta;
@@ -84,13 +105,15 @@ public class Aposta implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.dataAposta);
-        hash = 97 * hash + this.placar1;
-        hash = 97 * hash + this.placar2;
-        hash = 97 * hash + Objects.hashCode(this.usuario);
-        hash = 97 * hash + Objects.hashCode(this.jogo);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.dataAposta);
+        hash = 59 * hash + this.placar1;
+        hash = 59 * hash + this.placar2;
+        hash = 59 * hash + Objects.hashCode(this.usuario);
+        hash = 59 * hash + Objects.hashCode(this.jogo);
+        hash = 59 * hash + Objects.hashCode(this.listaGols1);
+        hash = 59 * hash + Objects.hashCode(this.listaGols2);
         return hash;
     }
 
@@ -121,8 +144,14 @@ public class Aposta implements Serializable{
         if (!Objects.equals(this.jogo, other.jogo)) {
             return false;
         }
+        if (!Objects.equals(this.listaGols1, other.listaGols1)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaGols2, other.listaGols2)) {
+            return false;
+        }
         return true;
     }
-    
-    
+
+   
 }

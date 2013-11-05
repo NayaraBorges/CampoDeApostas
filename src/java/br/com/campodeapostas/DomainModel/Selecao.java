@@ -5,6 +5,7 @@
 package br.com.campodeapostas.DomainModel;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,8 +30,18 @@ public class Selecao implements Serializable{
     private String nome;
     @ManyToOne
     private Grupo grupo;
-     @Column(name="Tecnico")
+    @Column(name="Tecnico")
     private String tecnico;
+    @OneToMany
+    private List<Jogador> jogadores;
+
+    public List<Jogador> getJogadores() {
+        return jogadores;
+    }
+
+    public void setJogadores(List<Jogador> jogadores) {
+        this.jogadores = jogadores;
+    }
    
     public Grupo getGrupo() {
         return grupo;
@@ -65,12 +77,12 @@ public class Selecao implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.nome);
-        hash = 29 * hash + Objects.hashCode(this.grupo);
-        hash = 29 * hash + Objects.hashCode(this.tecnico);
-      
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.grupo);
+        hash = 37 * hash + Objects.hashCode(this.tecnico);
+        hash = 37 * hash + Objects.hashCode(this.jogadores);
         return hash;
     }
 
@@ -95,7 +107,9 @@ public class Selecao implements Serializable{
         if (!Objects.equals(this.tecnico, other.tecnico)) {
             return false;
         }
-       
+        if (!Objects.equals(this.jogadores, other.jogadores)) {
+            return false;
+        }
         return true;
     }
 

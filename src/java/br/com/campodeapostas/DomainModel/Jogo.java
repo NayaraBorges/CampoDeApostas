@@ -6,6 +6,7 @@ package br.com.campodeapostas.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,18 +43,36 @@ public class Jogo implements Serializable{
     private Date dataJogo;
     @OneToOne
     private Estadio estadio;
-    
+    @OneToMany
+    private List<JogoGols> listaGols1;
+    @OneToMany
+    private List<JogoGols> listaGols2;
 
-    public Date getData() {
+    public Date getDataJogo() {
         return dataJogo;
     }
 
-    
-    public void setData(Date dataJogo) {
+    public void setDataJogo(Date dataJogo) {
         this.dataJogo = dataJogo;
     }
 
-    public Estadio getEstadio() {
+    public List<JogoGols> getListaGols1() {
+        return listaGols1;
+    }
+
+    public void setListaGols1(List<JogoGols> listaGols1) {
+        this.listaGols1 = listaGols1;
+    }
+
+    public List<JogoGols> getListaGols2() {
+        return listaGols2;
+    }
+
+    public void setListaGols2(List<JogoGols> listaGols2) {
+        this.listaGols2 = listaGols2;
+    }
+
+   public Estadio getEstadio() {
         return estadio;
     }
 
@@ -110,15 +130,17 @@ public class Jogo implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.fase);
-        hash = 43 * hash + Objects.hashCode(this.selecao1);
-        hash = 43 * hash + Objects.hashCode(this.selecao2);
-        hash = 43 * hash + this.placar1;
-        hash = 43 * hash + this.placar2;
-        hash = 43 * hash + Objects.hashCode(this.dataJogo);
-        hash = 43 * hash + Objects.hashCode(this.estadio);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.fase);
+        hash = 17 * hash + Objects.hashCode(this.selecao1);
+        hash = 17 * hash + Objects.hashCode(this.selecao2);
+        hash = 17 * hash + this.placar1;
+        hash = 17 * hash + this.placar2;
+        hash = 17 * hash + Objects.hashCode(this.dataJogo);
+        hash = 17 * hash + Objects.hashCode(this.estadio);
+        hash = 17 * hash + Objects.hashCode(this.listaGols1);
+        hash = 17 * hash + Objects.hashCode(this.listaGols2);
         return hash;
     }
 
@@ -155,7 +177,14 @@ public class Jogo implements Serializable{
         if (!Objects.equals(this.estadio, other.estadio)) {
             return false;
         }
+        if (!Objects.equals(this.listaGols1, other.listaGols1)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaGols2, other.listaGols2)) {
+            return false;
+        }
         return true;
     }
+    
     
 }
