@@ -47,7 +47,7 @@ public class JogoBean implements Serializable{
     Selecao selecao2;
     int placar1;
     int placar2;
-    Date data;
+    Date dataJogo;
     Estadio estadio;
     List<Selecao> listagemSelecoes;
     List<Fase> listagemFases;
@@ -131,7 +131,7 @@ public class JogoBean implements Serializable{
         if(jogo == null)
             jogo = new Jogo();
         
-        jogo.setData(data);
+        jogo.setDataJogo(dataJogo);
         jogo.setEstadio(estadio);
         jogo.setFase(fase);
         jogo.setPlacar1(placar1);
@@ -199,12 +199,12 @@ public class JogoBean implements Serializable{
         this.placar2 = placar2;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataJogo() {
+        return dataJogo;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData(Date dataJogo) {
+        this.dataJogo = dataJogo;
     }
 
     public Estadio getEstadio() {
